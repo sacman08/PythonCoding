@@ -35,7 +35,3 @@ if __name__ == "__main__":
         print("Could not convert data to an integer.")
         exit(1)
     print("F(%d) = %d" % (n, fibonacci(n)))
-
-
-
-main(100)
