@@ -1,4 +1,5 @@
 import sys
+import os
 from tkinter import *
 from tkinter import ttk
 from PIL import ImageTk,Image
@@ -6,7 +7,6 @@ from PIL import ImageTk,Image
 #TODO if the image is larger than the actual screen size, resize border view to make it fit.
 #TODO if image is larger, measure the size and then add sliders to move pic around.
 #TODO add zoom in and out function to resize the image temporarily for viewing.
-#TODO Find a grid geometry that allows the image to not stretch row 2 buttons columns
 #TODO Make the browse button work and the image list dynamic to pick photos in a directory.
 
 
@@ -19,17 +19,21 @@ content.grid(column=0, row=0)
 content.columnconfigure(0, weight=1)
 content.rowconfigure(0, weight=0)
 
-myimg = Image.open("IMG_5556.jpg")
-myimg= myimg.resize((560,480), Image.ANTIALIAS)
-myimg = ImageTk.PhotoImage(myimg)
-imgList=[myimg]
+#myimg = Image.open("IMG_5556.jpg")
+#myimg= myimg.resize((560,480), Image.ANTIALIAS)
 
-my_label= Label(image = imgList)
-my_label.grid(row=0, column=0, columnspan=5)
 
 #Create the variables for the menu
 sizecodes = ('Zoom','200%','175%','150%','125%','100%','75%','50%','25%')
-sizevar = StringVar(value=sizecodes)
+sizevar = StringVar()
+osp = os.path.expanduser('~'+os.getlogin())
+#find all image files
+for file in os.listdir(osp):
+    if file.endswith(".jpg"):
+        myimg=(os.path.join(osp, file))
+        print(myimg)
+imgList = []
+my_label= Label(image = imgList)
 
 #Functions for menu and picture controls
 def forward(image_number):
@@ -66,11 +70,35 @@ def back(image_number):
     button_back.grid(row=4, column=0)
     button_forward.grid(row=4, column= 1)
 
+def browse():
+    #find login
+    #get current path
+    global myimg
+    global imgList
+    osp = os.path.expanduser('~'+os.getlogin())
+    #find all image files
+    for file in os.listdir(osp):
+        if file.endswith(".jpg"):
+            myimg=(os.path.join(osp, file))
+            print(myimg)
+    
+    imgList = ImageTk.PhotoImage(myimg)
+    #imgList=[myimg]
+    
+    #show first image
+    #pass
+
+def zoom():
+    pass
+
 #Style the grid
+my_label.grid(row=0, column=0, columnspan=5)
 button_back = Button(root, text="<<", command=back)
 button_forward= Button(root, text=">>", command= lambda: forward(2))
 button_zoom= ttk.Combobox(root, textvariable=sizevar)
-button_browse = Button(root, text="Browse...")
+button_zoom['values']=(sizecodes)
+button_zoom.current(0)
+button_browse = Button(root, text="Browse...", command=browse)
 button_exit = Button(root, text="Exit", command=root.quit)
 
 #Place the buttons
