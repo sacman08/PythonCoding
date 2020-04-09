@@ -70,18 +70,13 @@ def back(image_number):
     button_back.grid(row=4, column=0)
     button_forward.grid(row=4, column= 1)
 
-def browse():
+def browse(self):
     #find login
     #get current path
-    global myimg
-    global imgList
-    osp = os.path.expanduser('~'+os.getlogin())
+    #global myimg
+    #global imgList
     #find all image files
-    for file in os.listdir(osp):
-        if file.endswith(".jpg"):
-            myimg=(os.path.join(osp, file))
-            print(myimg)
-    
+    self.filename = filedialog.askopenfilename(initialdir = "/", title="Select A File", filetype = (("*.jpg", "jpeg"), ("All Files", "*,*"))) 
     imgList = ImageTk.PhotoImage(myimg)
     #imgList=[myimg]
     
@@ -98,7 +93,7 @@ button_forward= Button(root, text=">>", command= lambda: forward(2))
 button_zoom= ttk.Combobox(root, textvariable=sizevar)
 button_zoom['values']=(sizecodes)
 button_zoom.current(0)
-button_browse = Button(root, text="Browse...", command=browse)
+button_browse = Button(root, text="Browse...", command=self.browse)
 button_exit = Button(root, text="Exit", command=root.quit)
 
 #Place the buttons
