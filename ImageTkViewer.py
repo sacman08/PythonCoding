@@ -3,6 +3,7 @@ import os
 from tkinter import *
 from tkinter import ttk
 from PIL import ImageTk,Image
+from tkinter import filedialog
 
 #TODO if the image is larger than the actual screen size, resize border view to make it fit.
 #TODO if image is larger, measure the size and then add sliders to move pic around.
@@ -70,13 +71,13 @@ def back(image_number):
     button_back.grid(row=4, column=0)
     button_forward.grid(row=4, column= 1)
 
-def browse(self):
+def browse():
     #find login
     #get current path
     #global myimg
     #global imgList
     #find all image files
-    self.filename = filedialog.askopenfilename(initialdir = "/", title="Select A File", filetype = (("*.jpg", "jpeg"), ("All Files", "*,*"))) 
+    self.filename = filedialog.askopenfilename(initialdir = "/", title="Select A File", filetype = (("jpeg", "*.jpg"), ("All Files", "*.*"))) 
     imgList = ImageTk.PhotoImage(myimg)
     #imgList=[myimg]
     
@@ -93,7 +94,7 @@ button_forward= Button(root, text=">>", command= lambda: forward(2))
 button_zoom= ttk.Combobox(root, textvariable=sizevar)
 button_zoom['values']=(sizecodes)
 button_zoom.current(0)
-button_browse = Button(root, text="Browse...", command=self.browse)
+button_browse = Button(root, text="Browse...", command=browse)
 button_exit = Button(root, text="Exit", command=root.quit)
 
 #Place the buttons

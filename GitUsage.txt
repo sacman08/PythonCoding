@@ -1,0 +1,7 @@
+Git CLI Functions
+
+git add NewFileName.py
+
+git commit (to recognize changes)
+	edit commit message save with :wq
+git push (to finalize everything)
