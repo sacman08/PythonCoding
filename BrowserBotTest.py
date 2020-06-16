@@ -5,19 +5,19 @@ browser = webdriver.Firefox()
 
 browser.get('https://www.instgram.com/')
 
-login_link = browser.find_element_by_xpath("//a[text()='Log in']")
-login_link.click()
+while True:
+    try:
+        login_link = browser.find_element_by_xpath("//a[text()='Log in']")
+        login_link.click()
+    except:
+        username_input = browser.find_element_by_css_selector("input[name='username']")
+        password_input = browser.find_element_by_css_selector("input[name='password']")
 
-sleep(12)
+        username_input.send_keys("")
+        password_input.send_keys("")
 
-username_input = browser.find_element_by_css_selector("input[name='username']")
-password_input = browser.find_element_by_css_selector("input[name='password']")
-
-username_input.send_keys("sacman08")
-password_input.send_keys("Bsd54rel!")
-
-login_button = browser.find_element_by_xpath("//button[@type='submit']")
-login_button.click()
+        login_button = browser.find_element_by_xpath("//button[@type='submit']")
+        login_button.click()
 
 sleep(5)
 
