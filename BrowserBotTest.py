@@ -1,54 +1,9 @@
+# Test file for auto logging into Instagram and searching for accounts to link
+
 from time import sleep
 from selenium import webdriver
 
 browser = webdriver.Firefox()
-
-browser.get('https://www.instgram.com/')
-
-while True:
-    try:
-        login_link = browser.find_element_by_xpath("//a[text()='Log in']")
-        login_link.click()
-    except:
-        username_input = browser.find_element_by_css_selector("input[name='username']")
-        password_input = browser.find_element_by_css_selector("input[name='password']")
-
-        username_input.send_keys("")
-        password_input.send_keys("")
-
-<<<<<<< HEAD
-        login_button = browser.find_element_by_xpath("//button[@type='submit']")
-        login_button.click()
-=======
-username_input = browser.find_element_by_css_selector("input[name='username']")
-password_input = browser.find_element_by_css_selector("input[name='password']")
-
-username_input.send_keys("")
-password_input.send_keys("")
-
-login_button = browser.find_element_by_xpath("//button[@type='submit']")
-login_button.click()
->>>>>>> 5308bc5bd64ecfef0dfed6a6c5bf7b09fff7d621
-
-sleep(5)
-
-browser.close()
-
-
-def test_login_page(browser):
-    browser.get('https://www.instagram.com/accounts/login/')
-    username_input = browser.find_element_by_css_selector("input[name='username']")
-    password_input = browser.find_element_by_css_selector("input[name='password']")
-    username_input.send_keys("<your username>")
-    password_input.send_keys("<your password>")
-    login_button = browser.find_element_by_xpath("//button[@type='submit']")
-    login_button.click()
-
-    errors = browser.find_elements_by_css_selector('#error_message')
-    assert len(errors) == 0
-
-
-from time import sleep
 
 class LoginPage:
     def __init__(self, browser):
@@ -69,8 +24,11 @@ class HomePage:
         self.browser.get('https://www.instagram.com/')
 
     def go_to_login_page(self):
-        self.browser.find_element_by_xpath("//a[text()='Log in']").click()
-        sleep(2)
+        try:
+            self.browser.find_element_by_xpath("//a[text()='Log in']").click()
+            sleep(2)
+        except:
+            pass
         return LoginPage(self.browser)
 
 def test_login_page(browser):
@@ -80,3 +38,10 @@ def test_login_page(browser):
 
     errors = browser.find_elements_by_css_selector('#error_message')
     assert len(errors) == 0
+    
+
+#Main
+test_login_page(webdriver.Firefox())
+# Fix: opening two browsers
+# Fix: manually typing out commands in shell works, using function can't find username
+

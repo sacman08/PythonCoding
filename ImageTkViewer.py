@@ -6,29 +6,25 @@ from PIL import ImageTk,Image
 from tkinter import filedialog
 
 #TODO if the image is larger than the actual screen size, resize border view to make it fit.
-#TODO if image is larger, measure the size and then add sliders to move pic around.
 #TODO add zoom in and out function to resize the image temporarily for viewing.
-#TODO Make the browse button work and the image list dynamic to pick photos in a directory.
+#TODO After browse selection, KeyError: 'File name' Unable to getmodebase or getmode on image file
+#TODO May need to use Image.open or a parser to just display file.
 
-
-#Build the root window
+#Build the root image viewing window
 root = Tk()
 
-#Build the content on the frame
+#Build the content on the frame for navigation
 content = ttk.Frame(root)
 content.grid(column=0, row=0)
 content.columnconfigure(0, weight=1)
 content.rowconfigure(0, weight=0)
 
-#myimg = Image.open("IMG_5556.jpg")
-#myimg= myimg.resize((560,480), Image.ANTIALIAS)
 
-
-#Create the variables for the menu
+#Create the zoom variables for the menu
 sizecodes = ('Zoom','200%','175%','150%','125%','100%','75%','50%','25%')
 sizevar = StringVar()
 osp = os.path.expanduser('~'+os.getlogin())
-#find all image files
+# After browsing set the directory and find all image files (Do I even need this loop now?)
 for file in os.listdir(osp):
     if file.endswith(".jpg"):
         myimg=(os.path.join(osp, file))
@@ -72,18 +68,12 @@ def back(image_number):
     button_forward.grid(row=4, column= 1)
 
 def browse():
-    #find login
-    #get current path
-    #global myimg
-    #global imgList
-    #find all image files
-    self.filename = filedialog.askopenfilename(initialdir = "/", title="Select A File", filetype = (("jpeg", "*.jpg"), ("All Files", "*.*"))) 
-    imgList = ImageTk.PhotoImage(myimg)
-    #imgList=[myimg]
+    #maybe I don't need "self." before filename?
+    filename = filedialog.askopenfilename(initialdir = "/", title="Select A File", filetype = (("jpeg", "*.jpg"), ("All Files", "*.*"))) 
+    imgList = ImageTk.PhotoImage(image=filename)
+    #imgList = ImageTk.PhotoImage(myimg)
+    #show first image selected
     
-    #show first image
-    #pass
-
 def zoom():
     pass
 
