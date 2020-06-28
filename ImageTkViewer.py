@@ -23,12 +23,12 @@ content.rowconfigure(0, weight=0)
 #Create the zoom variables for the menu
 sizecodes = ('Zoom','200%','175%','150%','125%','100%','75%','50%','25%')
 sizevar = StringVar()
-osp = os.path.expanduser('~'+os.getlogin())
+#osp = os.path.expanduser(r'~'+os.getlogin())
 # After browsing set the directory and find all image files (Do I even need this loop now?)
-for file in os.listdir(osp):
-    if file.endswith(".jpg"):
-        myimg=(os.path.join(osp, file))
-        print(myimg)
+#for file in os.listdir(osp):
+#    if file.endswith(".jpg"):
+#        myimg=(os.path.join(osp, file))
+#        myimg.show()
 imgList = []
 my_label= Label(image = imgList)
 
@@ -43,8 +43,8 @@ def forward(image_number):
     button_forward = Button(root, text=">>", command=(lambda: forward(image_number+1)))
     button_back = Button(root, text ="<<", command=(lambda: back(image_number-1)))
 
-    if image_number == max(image_number):
-        button_forward = Button(root, text=">>", state=DISABLED)
+    #if image_number == max(image_number):
+    #    button_forward = Button(root, text=">>", state=DISABLED)
                          
     my_label.grid(row=0, column=0, columnspan=5, rowspan=5)
     button_back.grid(row=4, column=0)
@@ -60,17 +60,19 @@ def back(image_number):
     button_forward = Button(root, text=">>", command=(lambda: forward(image_number+1)))
     button_back = Button(root, text ="<<", command=(lambda: back(image_number-1)))
 
-    if image_number == max(image_number):
-        button_back = Button(root, text="<<", state=DISABLED)
+    #if image_number == max(image_number):
+    #    button_back = Button(root, text="<<", state=DISABLED)
                          
     my_label.grid(row=0, column=0, columnspan=5)
     button_back.grid(row=4, column=0)
     button_forward.grid(row=4, column= 1)
 
 def browse():
-    #maybe I don't need "self." before filename?
-    filename = filedialog.askopenfilename(initialdir = "/", title="Select A File", filetype = (("jpeg", "*.jpg"), ("All Files", "*.*"))) 
-    imgList = ImageTk.PhotoImage(image=filename)
+    filename = filedialog.askopenfilename(initialdir = r"/", title="Select A File", filetype = (("jpeg", "*.jpg"), ("All Files", "*.*"))) 
+    #imgList = ImageTk.PhotoImage(image=filename)
+    #imgList.show()
+    #imgList = Image.open(filename)  #Image.open uses the OS default image viewer program (i.e. Windows Preview)
+    #imgList.show()
     #imgList = ImageTk.PhotoImage(myimg)
     #show first image selected
     
