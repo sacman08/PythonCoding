@@ -1,3 +1,7 @@
+# Tkinter widget build test.
+# Create frame, add some selection boxes, text box for name, buttons for clicking.
+# No other current usage than to show display functions available.
+
 #pull in modules for Tkinter
 from tkinter import *
 from tkinter import ttk

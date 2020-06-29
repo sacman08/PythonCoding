@@ -9,7 +9,7 @@ from tkinter import filedialog
 #TODO add zoom in and out function to resize the image temporarily for viewing.
 #TODO convert sizevar selection to proper scale (i.e. 200% = 2, 175% = 1.75)
 #TODO After browse selection, Image is showing in window but blank
-#TODO Compile images into a way to select next and previous 
+#TODO Compile images into a way to select next and previous OR remember last images selected to allow for back to and forward to movement.
 
 #Build the root image viewing window
 root = Tk()
