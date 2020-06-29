@@ -1,3 +1,6 @@
+# Program to return the Nth fibonacci number entered as an argument
+# Usage: $ python FastFibonacci.py Nth 
+# Example: "python FastFibonacci.py 100" will return the 100th fibonacci number.
 
 import sys
 
