@@ -27,6 +27,8 @@ def _fib(n: int):  # noqa: E999 This syntax is Python 3 only
         else:
             return (d, c + d)
 
+def main(args):
+    fibonacci(n)
 
 if __name__ == "__main__":
     args = sys.argv[1:]
@@ -41,4 +43,3 @@ if __name__ == "__main__":
     print("F(%d) = %d" % (n, fibonacci(n)))
 
 
-main(n)
