@@ -3,11 +3,12 @@ import sys
 import os
 from tkinter import *
 from tkinter import ttk
-from PIL import ImageTk,Image,ImageOps
+from PIL import ImageTk,Image
 from tkinter import filedialog
 
 #TODO Give it a default image to display on opening with app info and contacts
 #TODO if the image is larger than the actual screen size, resize view to make it fit.
+#TODO Image.resize generates error about no attribute available to resize
 #TODO Remove Previous image so that it is not "underneath" current image.
 #TODO add zoom in and out function to resize the image temporarily for viewing.
 #TODO convert sizevar selection to proper scale (i.e. 200% = 2, 175% = 1.75)
@@ -17,7 +18,7 @@ from tkinter import filedialog
 #Build the root image viewing window
 root = Tk()
 root.wm_title("Fast Image Viewer")
-root.geometry("800x600")
+root.geometry("640x480")
 #Build the content on the frame for navigation
 content = ttk.Frame(root)
 content.grid(column=0, row=0)
@@ -73,29 +74,49 @@ def browse():
     global imgList
     global browse
     global root
+    imgList.image = None  #Reset image
     filename = filedialog.askopenfilename(initialdir = r"/", title="Select A File", filetype = (("jpeg", "*.jpg"), ("All Files", "*.*"))) 
     imgList = ImageTk.PhotoImage(Image.open(filename))
-    #TODO If check to reduce size to fit inside monitor size
-    if imgList.width() > 800 : #If my image is too big, attempt to scale or fit inside display window (1366x756)
-        my_label= Label(image = imgList, text=filename)
-        my_label.image = imgList
-        my_label.grid(row=1, column=0, columnspan=5)
+    my_label= Label(image = imgList, text=filename)
+    my_label.image = imgList
+    my_label.grid(row=1, column=0, columnspan=5)
+    zoom(imgList) # call Zoom funciton to check image size
+    imgList.resize(newsize)
+    root.geometry(str(imgList.width())+"x"+str(imgList.height()+30))    # Set the root window size to the image size plus 30 for buttons at bottom.
+    #if imgList.width() > 800 : #If my image is too big, attempt to scale or fit inside display window (1366x756)
+    #   my_label= Label(image = imgList, text=filename)
+    #   my_label.image = imgList
+    #   my_label.grid(row=1, column=0, columnspan=5)
+    #   root.geometry(imgList.width+"x"+imgList.height+10)
         #root.geometry("800x600")  resizes main window but crops off buttons and most of image outside width,height
-        #ImageOps.fit(my_label.image, (800,600), method=0, bleed=0, centering=(0.5,0.5)) #ERROR unable to find attiribute size for ImageTK.PhotoImage
         
-    else:  #Show my image in original size (can be larger than display screen of computer and overlaps (?) browse and exit buttons.
-        my_label= Label(image = imgList, text=filename)
-        my_label.image = imgList
-        my_label.grid(row=1, column=0, columnspan=5)           
+        
+    #else:  #Show my image in original size (can be larger than display screen of computer and overlaps (?) browse and exit buttons.
+    #   my_label= Label(image = imgList, text=filename)
+    #   my_label.image = imgList
+    #   my_label.grid(row=1, column=0, columnspan=5)           
 
     
     
-def zoom():
-    pass
-    #ImageOps.scale for zooming by size
-    #global sizevar
-    #TODO convert sizevar tuple to dictionary so I can pull resize by selection (i.e sizevar = sizevar_dict.keys) 
-    #sizevar_dict = {'200%' : 2, '175%': 1.75,'150%': 1.5, '125%':1.25,'100%': 1,'75%': .75,'50%': .5,'25%': .25}
+def zoom(newsize):
+    global zoom
+    global sizevar
+    global my_label
+    global root
+    sizevar_dict = {'200%' : 2, '175%': 1.75,'150%': 1.5, '125%':1.25,'100%': 1,'75%': .75,'50%': .5,'25%': .25}
+    if imgList.width() > 1024:   # Is image wider that most visible monitor displays?
+        imgWidth = imgList.width() / 1024  # Get the factor it is larger
+        imgWidfactor = (float(imgWidth - int(imgWidth)))  # get the float values greater than 1
+        newsize = (imgList.width() * (imgWidfactor), imgList.height() * (imgWidfactor)) # create new image size reducing by factor
+        print(imgWidfactor, newsize)
+        #imgList = Image.resize(newsize)  # reduce image size
+        return newsize # Return to browse function with new image size  
+    #if imgList.height() > 640:
+    #    imgHeight = imgList() / 640
+    #    imgHthFactor = float(imgHeight - int(imgHeight))  
+    
+    
+    
 
 
 #Style the grid
