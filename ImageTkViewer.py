@@ -19,6 +19,8 @@ from tkinter import filedialog
 root = Tk()
 root.wm_title("Fast Image Viewer")
 root.geometry("640x480")
+#scroll = Scrollbar(root, orient='vertical')
+#scroll.grid(rowspan = 5, column = 5,sticky = 'ns')
 #Build the content on the frame for navigation
 content = ttk.Frame(root)
 content.grid(column=0, row=0)
