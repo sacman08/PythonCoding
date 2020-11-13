@@ -33,10 +33,11 @@ my_restaurant.describe_restaurant()
 my_restaurant.open_restaurant()
 
 """ Instance for dog class (remove triple quotes to use)"""
+my_dog = Dog('Woofie', 6)
 your_dog = Dog('Janelle', 8)
 
 
-print(f"My dog's name is {my_dog.name}.")
+print(f"\nMy dog's name is {my_dog.name}.")
 print(f"My dog is {my_dog.age} years old.")
 my_dog.sit()
 my_dog.roll_over()
