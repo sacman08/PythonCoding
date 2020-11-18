@@ -77,6 +77,7 @@ def browse():
     global browse
     global root
     imgList.image = None  #Reset image
+    root.delete("all")
     filename = filedialog.askopenfilename(initialdir = r"/", title="Select A File", filetype = (("jpeg", "*.jpg"), ("All Files", "*.*"))) 
     imgList = ImageTk.PhotoImage(Image.open(filename))
     my_label= Label(image = imgList, text=filename)
