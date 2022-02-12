@@ -1,3 +1,5 @@
 # PythonCoding
 All Python Projects <br>
-My catch all for coding ideas I started before they become their own repo
+Python coding ideas
+Python examples
+Python projects before they earn their own repo
