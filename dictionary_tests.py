@@ -2,7 +2,7 @@ person_list = {
     'first_name': 'Clair',
     'last_name':'Hommes',
     'age':'38', 
-    'city':'New York, NY', 
+    'city':'New York, NY',
     'hair_color':'blonde', 
     'eyes': 'green'
 }
