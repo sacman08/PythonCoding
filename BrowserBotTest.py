@@ -16,7 +16,7 @@ while True:
         username_input.send_keys("")
         password_input.send_keys("")
 
-<<<<<<< HEAD
+#<<<<<<< HEAD
         login_button = browser.find_element_by_xpath("//button[@type='submit']")
         login_button.click()
 =======
@@ -28,7 +28,7 @@ password_input.send_keys("")
 
 login_button = browser.find_element_by_xpath("//button[@type='submit']")
 login_button.click()
->>>>>>> 5308bc5bd64ecfef0dfed6a6c5bf7b09fff7d621
+#>>>>>>> 5308bc5bd64ecfef0dfed6a6c5bf7b09fff7d621
 
 sleep(5)
 

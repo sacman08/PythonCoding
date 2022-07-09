@@ -1,11 +1,11 @@
-amanda_list = {
-    'first_name': 'Amanda', 
-    'last_name':'Sacco', 
+person_list = {
+    'first_name': 'Clair',
+    'last_name':'Hommes',
     'age':'38', 
-    'city':'Atlanta, GA', 
+    'city':'New York, NY', 
     'hair_color':'blonde', 
     'eyes': 'green'
 }
 
-for freaky in amanda_list.values():
+for freaky in person_list.values():
     print(freaky)

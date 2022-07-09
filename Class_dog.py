@@ -13,7 +13,7 @@ class Dog:
         print(f"{self.name} rolled over!")
         
         
-class Resturant:
+class Restaurant:
     """ Example 9 from Crash Course"""
     def __init__(self, name, rtype, status):
         self.name = name
@@ -27,14 +27,14 @@ class Resturant:
         print(f'{self.name} is {self.status} for business!')
     
 
-my_restaurant = Resturant('The Juicy Burritto', 'Mexican', 'Open')
+my_restaurant = Restaurant('The Juicy Burritto', 'Mexican', 'Open')
 
 my_restaurant.describe_restaurant()
 my_restaurant.open_restaurant()
 
 """ Instance for dog class (remove triple quotes to use)"""
-my_dog = Dog('Woofie', 6)
-your_dog = Dog('Janelle', 8)
+my_dog = Dog('Woofie', 9)
+your_dog = Dog('Janelle', 15)
 
 
 print(f"\nMy dog's name is {my_dog.name}.")
