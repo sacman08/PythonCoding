@@ -7,6 +7,8 @@ def check_for_leap(leapyear):
             print('Leap year.')
         elif leapyear % 100 == 0:
             print('Not a leap year.')
+        else:
+            print("Leap year.")
     else:
         print('Not a leap year.')
 

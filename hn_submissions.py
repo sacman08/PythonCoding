@@ -26,7 +26,7 @@ for submission in submission_ids[:30]:
         }
         submission_dicts.append(submission_dict)
     except KeyError:
-        print(f'Problem with one article: {submission}: {KeyError}')
+        print(f'Problem with one article: {submission}')
         pass
 
 submission_dicts = sorted(submission_dicts, key=itemgetter('comments'), reverse=True)
