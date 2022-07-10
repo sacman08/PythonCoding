@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-#TODO examine BeautifulSoup website for how to use
+# TODO examine BeautifulSoup website for how to use
 # Make a request to a URL
 # Store the result in 'res' variable
 

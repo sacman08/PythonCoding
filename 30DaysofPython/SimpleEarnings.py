@@ -9,6 +9,7 @@ def earnings_info():
         name = input("What is your name: ")
         hourly_wage = input("What is your hourly wage: ")
         hours_worked = input("How many hours did you work this week: ")
+        name = name.strip()
         try:
             if name == "" or hourly_wage == "" or hours_worked == "":
                 print("Please enter valid information!")
@@ -19,7 +20,7 @@ def earnings_info():
             elif float(hourly_wage) < 7.5:
                 print("Are you working for pennies? Please enter a reasonable wage!")
                 continue
-            elif float(hourly_wage) > 50:
+            elif float(hourly_wage) > 120:
                 print("Are you REALLY making all that cash? Please enter a normal wage!")
                 continue
             else:

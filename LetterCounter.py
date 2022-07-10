@@ -1,6 +1,6 @@
 #Program to counter letters in msg
 
-welcome = 'Welcome to the Letter Counting program!'
+welcome = 'Welcome to the Character Counting program!'
 
 print(welcome)
 
