@@ -1,7 +1,8 @@
 # Find all numbers in 100
 # For all numbers dividable by 3 print Fizz
-# For all numbers divisable by 5 print Buzz
-# For all numbers divisable by 3 & 5 print FizzBuzz
+# For all numbers dividable by 5 print Buzz
+# For all numbers dividable by 3 & 5 print FizzBuzz
+# TIP: Do the 3&5 first or their will be none found!
 
 
 for number in range(1, 101):
