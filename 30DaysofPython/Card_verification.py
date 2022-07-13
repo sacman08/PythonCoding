@@ -10,7 +10,7 @@ def luhn_algorithm(card_number):
     card_number = str(card_number)
     card_number = map(int, card_number)
     card_number = list(card_number)  # convert number to a mutable list
-    end_digit = card_number.pop(15) # Drop the last digit
+    end_digit = card_number.pop(15)  # Drop the last digit
     card_number.reverse()  # reverse the numbers
     for number in range(0, 15, 2):  # take our even digits, double them and subtract 9
         card_number[number] = (card_number[number] * 2)
@@ -24,4 +24,5 @@ def luhn_algorithm(card_number):
     return check_value
 
 
-print(luhn_algorithm())
+card_num = input("Please enter the card number:").strip()
+print(luhn_algorithm(card_num))
